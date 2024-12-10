@@ -1,6 +1,6 @@
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "2.13.15"
+scalaVersion := "2.13.15"
 
 lazy val root = (project in file("."))
   .settings(
@@ -20,7 +20,6 @@ lazy val root = (project in file("."))
       "org.typelevel" %% "cats-core" % "2.12.0",
       "org.typelevel" %% "cats-effect" % "3.5.7",
       "org.typelevel" %% "cats-mtl" % "1.5.0",
-      // some tofu things removed
       "tf.tofu" %% "derevo-cats" % "0.13.0",
       "tf.tofu" %% "derevo-circe-magnolia" % "0.13.0",
     ),
