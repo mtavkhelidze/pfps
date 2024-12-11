@@ -33,4 +33,4 @@ lazy val root = (project in file("."))
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
 Global / excludeLintKeys += idePackagePrefix
-Compile / run / fork := true
+// Compile / run / fork := true

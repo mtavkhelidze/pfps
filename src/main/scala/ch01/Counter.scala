@@ -1,7 +1,6 @@
 package ge.zgharbi.books
 package ch01
 
-import cats.Functor
 import cats.effect.*
 import cats.effect.kernel.Ref
 import cats.syntax.all.*
@@ -12,7 +11,7 @@ trait Counter[F[_]] {
 }
 
 object Counter {
-  def make[F[_]: Functor: Ref.Make]: F[Counter[F]] = {
+  def make[F[_]: Sync]: F[Counter[F]] = {
     Ref.of[F, Int](0).map { ref =>
       new Counter[F] {
         override def inc: F[Unit] = ref.update(_ + 1)
@@ -22,7 +21,7 @@ object Counter {
   }
 }
 
-object Main extends IOApp.Simple {
+object CounterMain extends IOApp.Simple {
   def run: IO[Unit] = Counter.make[IO].flatMap { c =>
     for {
       _ <- c.get.flatMap(IO.println)
