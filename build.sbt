@@ -20,6 +20,7 @@ lazy val root = (project in file("."))
       "org.typelevel" %% "cats-core" % "2.12.0",
       "org.typelevel" %% "cats-effect" % "3.5.7",
       "org.typelevel" %% "cats-mtl" % "1.5.0",
+      "org.typelevel" %% "squants" % "1.8.3",
       "tf.tofu" %% "derevo-cats" % "0.13.0",
       "tf.tofu" %% "derevo-circe-magnolia" % "0.13.0",
     ),
