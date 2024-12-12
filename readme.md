@@ -9,6 +9,7 @@ and [Shopping Cart](https://github.com/gvolpe/pfps-shopping-cart)
 Table of contents
 <br/>[Chapter 01: Best Practices](#chapter-01-best-practices)
 <br/>[Chapter 02: Tagless Final](#chapter-02-tagless-final)
+<br/>[Chapter 03: Technical Stack](#chapter-03-technical-stack)
 <b4/>
 
 ### Chapter 01: Best Practices
@@ -40,3 +41,27 @@ Anti-Patters
 
 * Combine pure computations in terms of tagless algebras and programs.
 * Perform logging (or console stuﬀ) only via a tagless algebra.
+
+### Chapter 03: Technical Stack
+
+* **cats:** basic functional blocks. From typeclasses such as Functor to syntax
+  and instances for some datatypes and monad transformers.
+* **cats-effect:** concurrency and functional eﬀects. It ships the default IO
+  monad.
+* **cats-retry:** retrying actions that can fail in a purely functional fashion.
+* **circe:** standard JSON library to create encoders and decoders.
+* **ciris:** flexible configuration library with support for diﬀerent
+  environments.
+* **derevo:** typeclass derivation via macro-annotations.
+* **fs2:** powerful streaming in constant memory and control flow.
+* **http4s:** purely functional HTTP server and client, built on top of fs2.
+* **http4s-jwt-auth:** opinionated JWT authentication built on top of jwt-scala.
+* **log4cats:** standard logging framework for Cats.
+* **monocle:** access and transform immutable data with optics.
+* **redis4cats:** client for Redis compatible with cats-effect.
+* **refined:** refinement types for type-level validation.
+* **scalacheck:** property-based test framework for Scala.
+* **scala-newtype:** zero-cost wrappers for strongly typed functions.
+* **skunk:** purely functional, non-blocking PostgreSQL client.
+* **squants:** strongly-typed units of measure such as “money”.
+* **weaver:** a test framework with native support for eﬀect types.
