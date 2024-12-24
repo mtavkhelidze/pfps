@@ -2,11 +2,11 @@ package ge.zgharbi.pfps
 package algebrae
 
 import algebrae.Auth.UserId
+import algebrae.Cart.{CartItem, Quantity}
 import algebrae.Items.ItemId
-import algebrae.Orders.*
+import algebrae.Orders._
 
 import cats.data.NonEmptyList
-import ge.zgharbi.pfps.algebrae.ShoppingCart.Quantity
 import io.estatico.newtype.macros.newtype
 import squants.market.Money
 

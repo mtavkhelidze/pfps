@@ -12,7 +12,7 @@ object Categories {
 }
 
 trait Categories[F[_]] {
-  import Categories.*
+  import Categories._
 
   def findAll: F[List[Category]]
   def create(name: CategoryName): F[CategoryId]

@@ -17,6 +17,7 @@ lazy val root = (project in file("."))
       "eu.timepit" %% "refined" % "0.11.2",
       "eu.timepit" %% "refined-cats" % "0.11.2",
       "io.estatico" %% "newtype" % "0.4.4",
+      "org.typelevel" %% "cats-kernel" % "2.12.0",
       "org.typelevel" %% "cats-core" % "2.12.0",
       "org.typelevel" %% "cats-effect" % "3.5.7",
       "org.typelevel" %% "cats-mtl" % "1.5.0",
@@ -24,12 +25,7 @@ lazy val root = (project in file("."))
       "tf.tofu" %% "derevo-cats" % "0.13.0",
       "tf.tofu" %% "derevo-circe-magnolia" % "0.13.0",
     ),
-    scalacOptions ++= Seq(
-      "-Ymacro-annotations",
-      "-Wconf:cat=unused:info",
-      "-Xsource:3",
-      "-Xsource:3-cross",
-    ),
+    scalacOptions ++= Seq("-Ymacro-annotations", "-Wconf:cats=unused:info"),
   )
 
 Global / onChangedBuildSource := ReloadOnSourceChanges

@@ -22,21 +22,22 @@ object HealthCheck {
 
 sealed trait Status
 object Status {
-  case object Alive extends Status
-  case object Unreachable extends Status
-
   val _Bool: Iso[Status, Boolean] =
     Iso[Status, Boolean] {
       case Alive       => true
       case Unreachable => false
     }(if (_) Alive else Unreachable)
 
+  case object Alive extends Status
+
+  case object Unreachable extends Status
+
   implicit val jsonEncoder: Encoder[Status] =
     Encoder.forProduct1("status")(_.toString)
 }
 
 trait HealthCheck[F[_]] {
-  import HealthCheck.*
+  import HealthCheck._
 
   def check: F[AppStatus]
 }

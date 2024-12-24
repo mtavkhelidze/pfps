@@ -14,7 +14,7 @@ object Brands {
 }
 
 trait Brands[F[_]] {
-  import Brands.*
+  import Brands._
 
   def findAll: F[List[Brand]]
   def create(name: BrandName): F[BrandId]

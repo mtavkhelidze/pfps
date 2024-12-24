@@ -1,7 +1,8 @@
 package ge.zgharbi.pfps
 package algebrae
 
-import ge.zgharbi.pfps.algebrae.Users.{Password, UserName}
+import algebrae.Users.{Password, UserName}
+
 import io.estatico.newtype.macros.newtype
 
 import java.util.UUID
@@ -14,8 +15,8 @@ object Auth {
   case class User(id: UserId, name: UserName)
 }
 
-trait Auth[F[_]] {
-  import Auth.*
+trait AuthService[F[_]] {
+  import Auth._
 
   def findUser(token: JwtToken): F[Option[User]]
   def newUser(username: UserName, password: Password): F[JwtToken]
