@@ -1,4 +1,3 @@
-package ge.zgharbi.books
 package ch01
 
 import cats.data.*
