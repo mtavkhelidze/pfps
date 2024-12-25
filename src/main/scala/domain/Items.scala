@@ -2,7 +2,7 @@ package ge.zgharbi.pfps
 package domain
 
 import domain.Brand._
-import domain.Categories.{Category, CategoryId}
+import domain.Category.CategoryId
 import domain.Items._
 
 import io.estatico.newtype.macros.newtype
