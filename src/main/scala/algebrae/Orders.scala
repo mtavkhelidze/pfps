@@ -7,10 +7,23 @@ import algebrae.Items.ItemId
 import algebrae.Orders._
 
 import cats.data.NonEmptyList
+import derevo.cats.{eqv, show}
+import derevo.derive
 import io.estatico.newtype.macros.newtype
 import squants.market.Money
 
 import java.util.UUID
+import scala.util.control.NoStackTrace
+
+@derive(show)
+sealed trait OrderOrPaymentError extends NoStackTrace {
+  def cause: String
+}
+
+@derive(eqv, show)
+case class OrderError(cause: String) extends OrderOrPaymentError
+@derive(eqv, show)
+case class PaymentError(cause: String) extends OrderOrPaymentError
 
 object Orders {
   @newtype case class OrderId(uuid: UUID)
