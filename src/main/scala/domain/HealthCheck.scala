@@ -1,5 +1,5 @@
 package ge.zgharbi.pfps
-package algebrae
+package domain
 
 import derevo.circe.magnolia.encoder
 import derevo.derive

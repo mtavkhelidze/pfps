@@ -1,10 +1,10 @@
 package ge.zgharbi.pfps
 package programs
 
-import algebrae._
-import algebrae.Auth.UserId
-import algebrae.Cart.{CartItem, CartTotal, EmptyCartError}
-import algebrae.Order.{OrderId, PaymentId}
+import domain._
+import domain.Auth.UserId
+import domain.Cart.{CartItem, CartTotal, EmptyCartError}
+import domain.Order.{OrderId, PaymentId}
 import effects.Background
 import retries.{Retriable, Retry}
 import services.ShoppingCart

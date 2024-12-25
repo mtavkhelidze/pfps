@@ -1,10 +1,10 @@
 package ge.zgharbi.pfps
-package algebrae
+package domain
 
-import algebrae.Auth.UserId
-import algebrae.Cart.{CartItem, Quantity}
-import algebrae.Items.ItemId
-import algebrae.Order.{OrderId, PaymentId}
+import domain.Auth.UserId
+import domain.Cart.{CartItem, Quantity}
+import domain.Items.ItemId
+import domain.Order.{OrderId, PaymentId}
 
 import cats.data.NonEmptyList
 import derevo.cats.{eqv, show}

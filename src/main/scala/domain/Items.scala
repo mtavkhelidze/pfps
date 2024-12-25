@@ -1,9 +1,9 @@
 package ge.zgharbi.pfps
-package algebrae
+package domain
 
-import algebrae.Brands._
-import algebrae.Categories.{Category, CategoryId}
-import algebrae.Items._
+import domain.Brand._
+import domain.Categories.{Category, CategoryId}
+import domain.Items._
 
 import io.estatico.newtype.macros.newtype
 import squants.market.Money

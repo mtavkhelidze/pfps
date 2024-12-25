@@ -18,6 +18,10 @@ lazy val root = (project in file("."))
       "eu.timepit" %% "refined" % "0.11.2",
       "eu.timepit" %% "refined-cats" % "0.11.2",
       "io.estatico" %% "newtype" % "0.4.4",
+      "org.http4s" %% "http4s-circe" % "0.23.30",
+      "org.http4s" %% "http4s-dsl" % "0.23.30",
+      "org.http4s" %% "http4s-ember-client" % "0.23.30",
+      "org.http4s" %% "http4s-ember-server" % "0.23.30",
       "org.typelevel" %% "cats-core" % "2.12.0",
       "org.typelevel" %% "cats-effect" % "3.5.7",
       "org.typelevel" %% "cats-kernel" % "2.12.0",
@@ -27,7 +31,9 @@ lazy val root = (project in file("."))
       "org.typelevel" %% "squants" % "1.8.3",
       "tf.tofu" %% "derevo-cats" % "0.13.0",
       "tf.tofu" %% "derevo-circe-magnolia" % "0.13.0",
+      "io.circe" %% "circe-core" % "0.14.10",
     ),
+    libraryDependencySchemes += "io.circe" %% "circe-core" % VersionScheme.Always,
     scalacOptions ++= Seq("-Ymacro-annotations"),
   )
 

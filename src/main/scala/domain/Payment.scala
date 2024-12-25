@@ -1,8 +1,8 @@
 package ge.zgharbi.pfps
-package algebrae
+package domain
 
-import algebrae.Auth.UserId
-import algebrae.Order.PaymentId
+import domain.Auth.UserId
+import domain.Order.PaymentId
 
 import squants.market.Money
 

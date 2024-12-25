@@ -1,7 +1,7 @@
 package ge.zgharbi.pfps
-package algebrae
+package domain
 
-import algebrae.Users.{Password, UserName}
+import domain.Users.{Password, UserName}
 
 import io.estatico.newtype.macros.newtype
 

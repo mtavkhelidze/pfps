@@ -1,7 +1,7 @@
 package ge.zgharbi.pfps
-package algebrae
+package domain
 
-import algebrae.Items.ItemId
+import domain.Items.ItemId
 
 import derevo.cats.show
 import derevo.derive

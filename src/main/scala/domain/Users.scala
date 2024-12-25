@@ -1,8 +1,8 @@
 package ge.zgharbi.pfps
-package algebrae
+package domain
 
-import algebrae.Auth.UserId
-import algebrae.Users.{EncryptedPassword, UserName}
+import domain.Auth.UserId
+import domain.Users.{EncryptedPassword, UserName}
 
 import io.estatico.newtype.macros.newtype
 
