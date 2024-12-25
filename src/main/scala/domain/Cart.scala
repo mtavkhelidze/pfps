@@ -1,7 +1,7 @@
 package ge.zgharbi.pfps
 package domain
 
-import domain.Items.ItemId
+import domain.Item.ItemId
 
 import derevo.cats.show
 import derevo.derive

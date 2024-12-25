@@ -3,7 +3,7 @@ package domain
 
 import domain.Auth.UserId
 import domain.Cart.{CartItem, Quantity}
-import domain.Items.ItemId
+import domain.Item.ItemId
 import domain.Order.{OrderId, PaymentId}
 
 import cats.data.NonEmptyList

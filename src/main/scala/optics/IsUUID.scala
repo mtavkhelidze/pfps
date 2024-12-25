@@ -20,3 +20,4 @@ object IsUUID {
 }
 
 object uuid extends Derive[IsUUID]
+

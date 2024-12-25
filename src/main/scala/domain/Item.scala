@@ -3,19 +3,29 @@ package domain
 
 import domain.Brand._
 import domain.Category.CategoryId
-import domain.Items._
+import domain.Item.{ItemDescription, ItemId, ItemName}
+import optics.uuid
 
+import derevo.cats._
+import derevo.circe.magnolia._
+import derevo.derive
 import io.estatico.newtype.macros.newtype
-import squants.market.Money
+import squants.market._
 
 import java.util.UUID
 
-object Items {
+object Item {
+  @derive(show, encoder, decoder, uuid)
   @newtype case class ItemId(value: UUID)
+
+  @derive(show, encoder, decoder)
   @newtype case class ItemName(value: String)
+
+  @derive(show, encoder, decoder)
   @newtype case class ItemDescription(value: String)
 }
 
+@derive(show, encoder, decoder)
 case class Item(
   uuid: ItemId,
   name: ItemName,
@@ -25,6 +35,7 @@ case class Item(
   category: Category,
 )
 
+@derive(show, encoder, decoder)
 case class CreateItem(
   name: ItemName,
   description: ItemDescription,
@@ -32,12 +43,6 @@ case class CreateItem(
   brandId: BrandId,
   categoryId: CategoryId,
 )
-case class UpdateItem(id: ItemId, price: Money)
 
-trait Items[F[_]] {
-  def findAll: F[List[Item]]
-  def findBy(brand: BrandName): F[List[Item]]
-  def findById(itemId: ItemId): F[Option[Item]]
-  def create(item: CreateItem): F[ItemId]
-  def update(item: UpdateItem): F[Unit]
-}
+@derive(show, encoder, decoder)
+case class UpdateItem(id: ItemId, price: Money)
