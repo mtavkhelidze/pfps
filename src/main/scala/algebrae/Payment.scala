@@ -2,7 +2,7 @@ package ge.zgharbi.pfps
 package algebrae
 
 import algebrae.Auth.UserId
-import algebrae.Orders.PaymentId
+import algebrae.Order.PaymentId
 
 import squants.market.Money
 

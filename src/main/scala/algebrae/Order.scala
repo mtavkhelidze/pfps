@@ -4,7 +4,7 @@ package algebrae
 import algebrae.Auth.UserId
 import algebrae.Cart.{CartItem, Quantity}
 import algebrae.Items.ItemId
-import algebrae.Orders._
+import algebrae.Order.{OrderId, PaymentId}
 
 import cats.data.NonEmptyList
 import derevo.cats.{eqv, show}
@@ -22,13 +22,18 @@ sealed trait OrderOrPaymentError extends NoStackTrace {
 
 @derive(eqv, show)
 case class OrderError(cause: String) extends OrderOrPaymentError
+
 @derive(eqv, show)
 case class PaymentError(cause: String) extends OrderOrPaymentError
 
-object Orders {
+object Order {
+  @derive(show)
   @newtype case class OrderId(uuid: UUID)
+
+  @derive(show)
   @newtype case class PaymentId(uuid: UUID)
 }
+
 case class Order(
   id: OrderId,
   pid: PaymentId,
