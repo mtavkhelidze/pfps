@@ -9,14 +9,14 @@ import org.http4s.HttpRoutes
 import org.http4s.circe.CirceEntityEncoder._
 import org.http4s.server.Router
 
-final case class BrandRoutes[F[_]: Monad](brands: Brands[F])
+final case class BrandsRoutes[F[_]: Monad](brands: Brands[F])
     extends Http4sDsl[F] {
 
-  private[routes] val prefixPath = "/brands"
+  private[routes] val prefix = "/brands"
 
   private val httpRtoues: HttpRoutes[F] = HttpRoutes.of[F] { case GET -> Root =>
     Ok(brands.findAll)
   }
 
-  val routes: HttpRoutes[F] = Router(prefixPath -> httpRtoues)
+  val routes: HttpRoutes[F] = Router(prefix -> httpRtoues)
 }
