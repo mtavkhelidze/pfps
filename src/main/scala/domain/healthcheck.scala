@@ -1,6 +1,7 @@
 package ge.zgharbi.pfps
 package domain
 
+import derevo.cats.eqv
 import derevo.circe.magnolia.encoder
 import derevo.derive
 import io.circe.Encoder
@@ -17,6 +18,7 @@ object healthcheck {
   @derive(encoder)
   case class AppStatus(redis: RedisStatus, postgres: PostgresStatus)
 
+  @derive(eqv)
   sealed trait Status
   object Status {
     val _Bool: Iso[Status, Boolean] =
@@ -32,11 +34,4 @@ object healthcheck {
     implicit val jsonEncoder: Encoder[Status] =
       Encoder.forProduct1("status")(_.toString)
   }
-
-}
-
-trait healthcheck[F[_]] {
-  import healthcheck._
-
-  def check: F[AppStatus]
 }
