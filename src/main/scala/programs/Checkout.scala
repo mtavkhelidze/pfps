@@ -2,6 +2,7 @@ package ge.zgharbi.pfps
 package programs
 
 import domain.cart._
+import domain.checkout.Card
 import domain.order._
 import domain.payment._
 import domain.user._

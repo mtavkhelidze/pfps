@@ -12,7 +12,7 @@ object refined {
     w: ValueOf[N],
   ): Validate.Plain[R, Size[N]] =
     Validate.fromPredicate[R, Size[N]](
-      _.toString.length == w.value,
+      _.toString.size == w.value,
       _ => s"Must have ${w.value} digits",
       Size[N](w.value),
     )

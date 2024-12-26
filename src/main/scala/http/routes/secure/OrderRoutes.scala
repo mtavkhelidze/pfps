@@ -23,7 +23,6 @@ final case class OrderRoutes[F[_]: Monad](orders: Orders[F])
 
     case GET -> Root / OrderIdVar(orderId) as user =>
       Ok(orders.get(user.value.id, orderId))
-
   }
 
   def routes(authMiddleware: AuthMiddleware[F, ApiUser]): HttpRoutes[F] =

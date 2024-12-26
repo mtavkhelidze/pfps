@@ -2,6 +2,7 @@ package ge.zgharbi.pfps
 package domain
 
 import domain.item.{Item, ItemId}
+import domain.user.UserId
 
 import derevo.cats._
 import derevo.circe.magnolia.{decoder, encoder}
@@ -36,4 +37,7 @@ object cart {
 
   @derive(show)
   case object EmptyCartError extends NoStackTrace
+
+  @derive(decoder, encoder)
+  case class CartNotFound(userId: UserId) extends NoStackTrace
 }
