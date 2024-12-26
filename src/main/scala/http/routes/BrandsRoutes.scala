@@ -13,10 +13,8 @@ final case class BrandsRoutes[F[_]: Monad](brands: Brands[F])
     extends Http4sDsl[F] {
 
   private[routes] val prefix = "/brands"
-
   private val httpRtoues: HttpRoutes[F] = HttpRoutes.of[F] { case GET -> Root =>
     Ok(brands.findAll)
   }
-
   val routes: HttpRoutes[F] = Router(prefix -> httpRtoues)
 }

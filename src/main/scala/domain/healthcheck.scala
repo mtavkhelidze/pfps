@@ -9,6 +9,9 @@ import io.estatico.newtype.macros.newtype
 import monocle.Iso
 
 object healthcheck {
+  @derive(eqv)
+  sealed trait Status
+
   @derive(encoder)
   @newtype case class RedisStatus(value: Status)
 
@@ -18,8 +21,6 @@ object healthcheck {
   @derive(encoder)
   case class AppStatus(redis: RedisStatus, postgres: PostgresStatus)
 
-  @derive(eqv)
-  sealed trait Status
   object Status {
     val _Bool: Iso[Status, Boolean] =
       Iso[Status, Boolean] {

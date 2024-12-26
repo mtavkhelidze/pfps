@@ -33,6 +33,12 @@ object brand {
     def toDomain: BrandName = BrandName(value.toLowerCase.capitalize)
   }
 
+  @derive(decoder, encoder, eqv, show)
+  case class Brand(uuid: BrandId, name: BrandName)
+
+  @derive(decoder, encoder)
+  case class InvalidBrand(value: String) extends NoStackTrace
+
   object BrandParam {
 
     implicit val jsonEncoder: Encoder[BrandParam] =
@@ -41,10 +47,4 @@ object brand {
     implicit val jsonDecoder: Decoder[BrandParam] =
       Decoder.forProduct1("name")(BrandParam.apply)
   }
-
-  @derive(decoder, encoder, eqv, show)
-  case class Brand(uuid: BrandId, name: BrandName)
-
-  @derive(decoder, encoder)
-  case class InvalidBrand(value: String) extends NoStackTrace
 }
