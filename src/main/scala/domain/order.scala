@@ -5,6 +5,7 @@ import domain.cart._
 import domain.item._
 
 import derevo.cats.{eqv, show}
+import derevo.circe.magnolia.{decoder, encoder}
 import derevo.derive
 import io.estatico.newtype.macros.newtype
 import squants.market.Money
@@ -25,12 +26,13 @@ object order {
   @derive(eqv, show)
   case class PaymentError(cause: String) extends OrderOrPaymentError
 
-  @derive(show)
+  @derive(encoder, decoder, show)
   @newtype case class OrderId(uuid: UUID)
 
-  @derive(show)
+  @derive(encoder, decoder, show)
   @newtype case class PaymentId(uuid: UUID)
 
+  @derive(encoder, decoder)
   case class Order(
     id: OrderId,
     pid: PaymentId,
