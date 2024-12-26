@@ -1,13 +1,13 @@
 package ge.zgharbi.pfps
 package programs
 
-import domain._
-import domain.Auth.UserId
-import domain.Cart.{CartItem, CartTotal, EmptyCartError}
-import domain.Order.{OrderId, PaymentId}
+import domain.cart._
+import domain.order._
+import domain.payment._
+import domain.user._
 import effects.Background
 import retries.{Retriable, Retry}
-import services.ShoppingCart
+import services.{Orders, PaymentClient, ShoppingCart}
 
 import cats.MonadThrow
 import cats.data.NonEmptyList
@@ -24,6 +24,17 @@ final case class Checkout[F[_]: MonadThrow: Retry: Background: Logger](
   orders: Orders[F],
   retryPolicy: RetryPolicy[F],
 ) {
+
+  def process(userId: UserId, card: Card) = {
+    cart.get(userId).flatMap { case CartTotal(items, total) =>
+      for {
+        its <- ensureNonEmpty(items)
+        pid <- processPayment(Payment(userId, total, card))
+        oid <- createOrder(userId, pid, its, total)
+        _ <- cart.delete(userId)
+      } yield oid
+    }
+  }
 
   private def createOrder(
     userId: UserId,
@@ -54,16 +65,6 @@ final case class Checkout[F[_]: MonadThrow: Retry: Background: Logger](
         PaymentError(Option(e.getMessage).getOrElse("Unknown payment error."))
       }
 
-  def process(userId: UserId, card: Card) = {
-    cart.get(userId).flatMap { case CartTotal(items, total) =>
-      for {
-        its <- ensureNonEmpty(items)
-        pid <- processPayment(Payment(userId, total, card))
-        oid <- createOrder(userId, pid, its, total)
-        _ <- cart.delete(userId)
-      } yield oid
-    }
-  }
   private def ensureNonEmpty[A](xs: List[A]): F[NonEmptyList[A]] =
     MonadThrow[F].fromOption(NonEmptyList.fromList(xs), EmptyCartError)
 }

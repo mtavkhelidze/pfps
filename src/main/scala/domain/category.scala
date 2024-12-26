@@ -1,7 +1,6 @@
 package ge.zgharbi.pfps
 package domain
 
-import domain.Category.{CategoryId, CategoryName}
 import optics.uuid
 
 import derevo.cats.show
@@ -11,10 +10,11 @@ import io.estatico.newtype.macros.newtype
 
 import java.util.UUID
 
-@derive(show, encoder, decoder)
-case class Category(categoryId: CategoryId, name: CategoryName)
+object category {
 
-object Category {
+  @derive(show, encoder, decoder)
+  case class Category(categoryId: CategoryId, name: CategoryName)
+
   @derive(show, encoder, decoder, uuid)
   @newtype case class CategoryId(value: UUID)
 

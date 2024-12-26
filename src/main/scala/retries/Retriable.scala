@@ -8,6 +8,6 @@ import derevo.derive
 sealed trait Retriable
 
 object Retriable {
-    case object Orders extends Retriable
-    case object Payments extends Retriable
+  case object Orders extends Retriable
+  case object Payments extends Retriable
 }

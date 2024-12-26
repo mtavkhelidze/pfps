@@ -1,8 +1,7 @@
 package ge.zgharbi.pfps
 package services
 
-import domain.Brand.{BrandId, BrandName}
-import domain.Brand
+import domain.brand._
 
 trait Brands[F[_]] {
   def findAll: F[List[Brand]]

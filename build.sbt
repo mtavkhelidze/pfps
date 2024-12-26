@@ -32,9 +32,16 @@ lazy val root = (project in file("."))
       "tf.tofu" %% "derevo-cats" % "0.13.0",
       "tf.tofu" %% "derevo-circe-magnolia" % "0.13.0",
       "io.circe" %% "circe-core" % "0.14.10",
+      "io.circe" %% "circe-generic" % "0.14.10",
+      "io.circe" %% "circe-parser" % "0.14.10",
+      "io.circe" %% "circe-refined" % "0.15.1",
     ),
     libraryDependencySchemes += "io.circe" %% "circe-core" % VersionScheme.Always,
-    scalacOptions ++= Seq("-Ymacro-annotations"),
+    scalacOptions ++= List(
+      "-Ymacro-annotations",
+      "-Yrangepos",
+      "-Wconf:cat=unused:info",
+    ),
   )
 
 Global / onChangedBuildSource := ReloadOnSourceChanges

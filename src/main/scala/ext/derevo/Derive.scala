@@ -1,12 +1,9 @@
 package ge.zgharbi.pfps
 package ext.derevo
 
-
-package shop.ext.derevo
+import derevo.{Derivation, NewTypeDerivation}
 
 import scala.annotation.implicitNotFound
-
-import derevo.{ Derivation, NewTypeDerivation }
 
 trait Derive[F[_]] extends Derivation[F] with NewTypeDerivation[F] {
   def instance(implicit ev: OnlyNewtypes): Nothing = ev.absurd

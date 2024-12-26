@@ -1,9 +1,9 @@
 package ge.zgharbi.pfps
 package services
 
-import domain.Auth.UserId
-import domain.Cart.{Cart, CartTotal, Quantity}
-import domain.Item.ItemId
+import domain.cart.{Cart, CartTotal, Quantity}
+import domain.item.ItemId
+import domain.user._
 
 trait ShoppingCart[F[_]] {
   def add(userId: UserId, itemId: ItemId, quantity: Quantity): F[Unit]

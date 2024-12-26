@@ -1,9 +1,8 @@
 package ge.zgharbi.pfps
 package services
 
-import domain.{CreateItem, Item, UpdateItem}
-import domain.Brand.BrandName
-import domain.Item.ItemId
+import domain.brand._
+import domain.item._
 
 trait Items[F[_]] {
   def findAll: F[List[Item]]

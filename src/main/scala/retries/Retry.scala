@@ -21,16 +21,17 @@ object Retry {
       override def retry[A](policy: RetryPolicy[F], retriable: Retriable)(
         fa: F[A],
       ): F[A] = {
-        def onError(@unused e: Throwable, details: RetryDetails): F[Unit] = details match {
-          case GivingUp(totalRetries, _) =>
-            Logger[F].error(
-              s"Failed on ${retriable.show} after ${totalRetries} tries.",
-            )
-          case WillDelayAndRetry(_, retriesSoFar, _) =>
-            Logger[F].error(
-              s"Failed on ${retriable.show}. We retried $retriesSoFar times.",
-            )
-        }
+        def onError(@unused e: Throwable, details: RetryDetails): F[Unit] =
+          details match {
+            case GivingUp(totalRetries, _) =>
+              Logger[F].error(
+                s"Failed on ${retriable.show} after ${totalRetries} tries.",
+              )
+            case WillDelayAndRetry(_, retriesSoFar, _) =>
+              Logger[F].error(
+                s"Failed on ${retriable.show}. We retried $retriesSoFar times.",
+              )
+          }
         retryingOnAllErrors(policy, onError)(fa)
       }
     }
