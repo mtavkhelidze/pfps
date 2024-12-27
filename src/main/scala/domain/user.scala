@@ -24,21 +24,13 @@ object user {
   @derive(encoder, decoder, uuid, show)
   @newtype case class UserId(value: UUID)
 
-  @derive(decoder, encoder)
+  @derive(decoder, encoder, show)
   case class User(id: UserId, name: UserName)
 
-  @derive(decoder, encoder)
+  @derive(show)
   @newtype case class ApiUser(value: User)
 
-//  @derive(decoder, encoder, show)
-//  case class UserWithPassword(
-//    id: UserId,
-//    name: UserName,
-//    password: EncryptedPassword,
-//  )
+  @derive(show)
+  @newtype
+  case class AdminUser(value: User)
 }
-//
-//trait Users[F[_]] {
-//  def find(username: UserName): F[Option[UserWithPassword]]
-//  def create(username: UserName, password: EncryptedPassword): F[UserId]
-//}
