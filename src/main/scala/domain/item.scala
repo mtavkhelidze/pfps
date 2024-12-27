@@ -5,6 +5,7 @@ import domain.brand._
 import domain.category.{Category, CategoryId}
 import optics.uuid
 
+import derevo.cats.show
 import derevo.circe.magnolia._
 import derevo.derive
 import io.estatico.newtype.macros.newtype
@@ -13,16 +14,16 @@ import squants.market._
 import java.util.UUID
 
 object item {
-  @derive(encoder, decoder, uuid,  keyDecoder, keyEncoder)
+  @derive(encoder, decoder, uuid,  keyDecoder, keyEncoder, show)
   @newtype case class ItemId(value: UUID)
 
-  @derive(encoder, decoder)
+  @derive(encoder, decoder, show)
   @newtype case class ItemName(value: String)
 
-  @derive(encoder, decoder)
+  @derive(encoder, decoder, show)
   @newtype case class ItemDescription(value: String)
 
-  @derive(encoder, decoder)
+  @derive(encoder, decoder, show)
   case class Item(
     uuid: ItemId,
     name: ItemName,

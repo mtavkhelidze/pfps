@@ -15,16 +15,15 @@ import scala.util.control.NoStackTrace
 
 object cart {
 
-  @derive(encoder, decoder)
+  @derive(encoder, decoder, show)
   @newtype case class Quantity(value: Int)
 
-  @derive(encoder, decoder)
+  @derive(encoder, decoder, show)
   case class CartItem(item: Item, quantity: Quantity)
 
-  @derive(encoder, decoder)
+  @derive(encoder, decoder, show)
   case class CartTotal(items: List[CartItem], total: Money)
 
-//  @derive(decoder)
   @newtype case class Cart(items: Map[ItemId, Quantity])
   object Cart {
     import io.circe.generic.auto._
@@ -38,6 +37,6 @@ object cart {
   @derive(show)
   case object EmptyCartError extends NoStackTrace
 
-  @derive(decoder, encoder)
+  @derive(decoder, encoder, show)
   case class CartNotFound(userId: UserId) extends NoStackTrace
 }

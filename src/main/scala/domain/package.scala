@@ -2,6 +2,7 @@ package ge.zgharbi.pfps
 import cats.{Eq, Monoid, Show}
 import cats.implicits._
 import dev.profunktor.auth.jwt.JwtToken
+import eu.timepit.refined.types.string.NonEmptyString
 import io.circe.{Decoder, Encoder}
 import squants._
 import squants.market.{Currency, USD}
@@ -30,6 +31,9 @@ trait OrphanInstances {
   implicit val moneyShow: Show[Money] = Show.fromToString
 
   implicit val tokenEq: Eq[JwtToken] = Eq.by(_.value)
+
+  implicit val nonEmptyStringShow: Show[NonEmptyString] =
+    Show[String].contramap[NonEmptyString](_.toString)
 
   implicit val tokenShow: Show[JwtToken] =
     Show[String].contramap[JwtToken](_.value)

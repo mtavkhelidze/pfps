@@ -36,7 +36,7 @@ object brand {
   @derive(decoder, encoder, eqv, show)
   case class Brand(uuid: BrandId, name: BrandName)
 
-  @derive(decoder, encoder)
+  @derive(decoder, encoder, show)
   case class InvalidBrand(value: String) extends NoStackTrace
 
   object BrandParam {
