@@ -3,6 +3,7 @@ package domain
 
 import domain.item.{Item, ItemId}
 import domain.user.UserId
+import ext.http4s.refined._
 
 import derevo.cats._
 import derevo.circe.magnolia.{decoder, encoder}
