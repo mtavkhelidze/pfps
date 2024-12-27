@@ -2,6 +2,7 @@ package ge.zgharbi.pfps
 package http.routes.auth
 
 import domain.auth.{InvalidPassword, LoginUser, UserNotFound}
+import domain.tokenEncoder
 import ext.http4s.refined.RefinedRequestDecoder
 import services.Auth
 
@@ -11,6 +12,7 @@ import org.http4s.circe.JsonDecoder
 import org.http4s.dsl.Http4sDsl
 import org.http4s.HttpRoutes
 import org.http4s.circe.CirceEntityEncoder._
+import org.http4s.server.Router
 
 final case class LoginRoutes[F[_]: JsonDecoder: MonadThrow](auth: Auth[F])
     extends Http4sDsl[F] {
@@ -27,4 +29,6 @@ final case class LoginRoutes[F[_]: JsonDecoder: MonadThrow](auth: Auth[F])
           }
       }
   }
+
+  val routes: HttpRoutes[F] = Router(prefix -> httpRoutes)
 }

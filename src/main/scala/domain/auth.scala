@@ -14,8 +14,8 @@ import io.estatico.newtype.macros.newtype
 import scala.util.control.NoStackTrace
 
 object auth {
-  @derive(encoder, decoder, show)
-  @newtype case class JwtToken(value: String)
+//  @derive(encoder, decoder, show)
+//  @newtype case class JwtToken(value: String)
 
   @derive(decoder, encoder)
   @newtype

@@ -1,8 +1,9 @@
 package ge.zgharbi.pfps
 package services
 
-import domain.auth.JwtToken
 import domain.user.{Password, User, UserName}
+
+import dev.profunktor.auth.jwt.JwtToken
 
 trait Auth[F[_]] {
 

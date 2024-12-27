@@ -1,5 +1,7 @@
 package ge.zgharbi.pfps
 import cats.{Eq, Monoid, Show}
+import cats.implicits._
+import dev.profunktor.auth.jwt.JwtToken
 import io.circe.{Decoder, Encoder}
 import squants._
 import squants.market.{Currency, USD}
@@ -26,12 +28,12 @@ trait OrphanInstances {
   implicit val moneyEq: Eq[Money] = Eq.and(Eq.by(_.amount), Eq.by(_.currency))
 
   implicit val moneyShow: Show[Money] = Show.fromToString
-  //
-  //  implicit val tokenEq: Eq[JwtToken] = Eq.by(_.value)
-  //
-  //  implicit val tokenShow: Show[JwtToken] =
-  //    Show[String].contramap[JwtToken](_.value)
-  //
-  //  implicit val tokenEncoder: Encoder[JwtToken] =
-  //    Encoder.forProduct1("access_token")(_.value)
+
+  implicit val tokenEq: Eq[JwtToken] = Eq.by(_.value)
+
+  implicit val tokenShow: Show[JwtToken] =
+    Show[String].contramap[JwtToken](_.value)
+
+  implicit val tokenEncoder: Encoder[JwtToken] =
+    Encoder.forProduct1("access_token")(_.value)
 }
