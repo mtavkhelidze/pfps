@@ -8,14 +8,15 @@ import monocle.Iso
 import java.util.UUID
 
 trait IsUUID[A] {
-  def _UUIS: Iso[UUID, A]
+  // @misha: can be id, _id, self, whatever...
+  def _UUID: Iso[UUID, A]
 }
 
 object IsUUID {
   def apply[A: IsUUID]: IsUUID[A] = implicitly
 
   implicit val identityUUID: IsUUID[UUID] = new IsUUID[UUID] {
-    override def _UUIS: Iso[UUID, UUID] = Iso[UUID, UUID](identity)(identity)
+    override def _UUID: Iso[UUID, UUID] = Iso[UUID, UUID](identity)(identity)
   }
 }
 
