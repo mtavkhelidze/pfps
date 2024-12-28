@@ -30,26 +30,14 @@ object checkout {
   @derive(encoder, show)
   @newtype
   case class CardNumber(value: CardNumberPred)
-  object CardNumber {
-    implicit val jsonDecoder: Decoder[CardNumber] =
-      decoderOf[Long, Size[16]].map(CardNumber(_))
-  }
 
   @derive(encoder, show)
   @newtype
   case class CardExpiration(value: CardExpirationPred)
-  object CardExpiration {
-    implicit val jsonDecoder: Decoder[CardExpiration] =
-      decoderOf[String, Size[4] And ValidInt].map(CardExpiration(_))
-  }
 
   @derive(encoder, show)
   @newtype
   case class CardCVV(value: CardCVVPred)
-  object CardCVV {
-    implicit val jsonDecoder: Decoder[CardCVV] =
-      decoderOf[Int, Size[3]].map(CardCVV(_))
-  }
 
   @derive(decoder, encoder, show)
   case class Card(
@@ -58,4 +46,19 @@ object checkout {
     expiration: CardExpiration,
     cvv: CardCVV,
   )
+
+  object CardNumber {
+    implicit val jsonDecoder: Decoder[CardNumber] =
+      decoderOf[Long, Size[16]].map(CardNumber(_))
+  }
+
+  object CardExpiration {
+    implicit val jsonDecoder: Decoder[CardExpiration] =
+      decoderOf[String, Size[4] And ValidInt].map(CardExpiration(_))
+  }
+
+  object CardCVV {
+    implicit val jsonDecoder: Decoder[CardCVV] =
+      decoderOf[Int, Size[3]].map(CardCVV(_))
+  }
 }

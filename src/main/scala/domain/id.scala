@@ -3,7 +3,6 @@ package domain
 
 import effects.GenUUID
 import optics.IsUUID
-
 import cats.Functor
 import cats.implicits.toFunctorOps
 

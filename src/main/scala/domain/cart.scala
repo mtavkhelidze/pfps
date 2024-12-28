@@ -26,6 +26,10 @@ object cart {
   case class CartTotal(items: List[CartItem], total: Money)
 
   @newtype case class Cart(items: Map[ItemId, Quantity])
+
+  @derive(decoder, encoder, show)
+  case class CartNotFound(userId: UserId) extends NoStackTrace
+
   object Cart {
     import io.circe.generic.auto._
     implicit val jsonEncoder: Encoder[Cart] =
@@ -37,7 +41,4 @@ object cart {
 
   @derive(show)
   case object EmptyCartError extends NoStackTrace
-
-  @derive(decoder, encoder, show)
-  case class CartNotFound(userId: UserId) extends NoStackTrace
 }

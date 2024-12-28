@@ -27,6 +27,8 @@ lazy val root = (project in file("."))
       "org.http4s" %% "http4s-dsl" % "0.23.30",
       "org.http4s" %% "http4s-ember-client" % "0.23.30",
       "org.http4s" %% "http4s-ember-server" % "0.23.30",
+      "org.tpolecat" %% "skunk-circe" % "0.6.4",
+      "org.tpolecat" %% "skunk-core" % "0.6.4",
       "org.typelevel" %% "cats-core" % "2.12.0",
       "org.typelevel" %% "cats-effect" % "3.5.7",
       "org.typelevel" %% "cats-kernel" % "2.12.0",
