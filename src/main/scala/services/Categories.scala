@@ -1,10 +1,10 @@
 package ge.zgharbi.pfps
 package services
 
-import domain.category.{Category, CategoryId, CategoryName}
+import domain.category.{ Category, CategoryId, CategoryName }
 import domain.ID
 import effects.GenUUID
-import services.codecs.{categoryId, categoryName}
+import services.codecs.{ categoryId, categoryName }
 
 import cats.effect._
 import cats.implicits._
@@ -39,7 +39,7 @@ object Categories {
 private object CategorySQL {
 
   val codec: Codec[Category] =
-    (categoryId ~ categoryName).imap { case i ~ n =>
+    (categoryId *: categoryName).imap { case i *: n *: _ =>
       Category(i, n)
     }(c => Category.unapply(c).get)
 

@@ -8,8 +8,10 @@ lazy val root = (project in file("."))
     idePackagePrefix := Some("ge.zgharbi.pfps"),
     libraryDependencies ++= Seq(
       compilerPlugin(
-        "org.typelevel" %% "kind-projector" % "0.13.3"
-          cross CrossVersion.full,
+        "org.scalameta" % "semanticdb-scalac" % "4.12.3" cross CrossVersion.full,
+      ),
+      compilerPlugin(
+        "org.typelevel" %% "kind-projector" % "0.13.3" cross CrossVersion.full,
       ),
       "co.fs2" %% "fs2-core" % "3.11.0",
       "com.github.cb372" %% "cats-retry" % "3.1.3",
@@ -35,11 +37,15 @@ lazy val root = (project in file("."))
       "org.typelevel" %% "cats-mtl" % "1.5.0",
       "org.typelevel" %% "log4cats-core" % "2.7.0",
       "org.typelevel" %% "log4cats-slf4j" % "2.7.0",
+      "org.typelevel" %% "twiddles-core" % "0.9.0",
       "org.typelevel" %% "squants" % "1.8.3",
       "tf.tofu" %% "derevo-cats" % "0.13.0",
       "tf.tofu" %% "derevo-circe-magnolia" % "0.13.0",
     ),
-    libraryDependencySchemes += "io.circe" %% "circe-core" % VersionScheme.Always,
+    libraryDependencySchemes ++= Seq(
+      "io.circe" %% "circe-core" % VersionScheme.Always,
+      "org.typelevel" %% "twiddles-core" % VersionScheme.Always,
+    ),
     scalacOptions ++= List(
       "-Ymacro-annotations",
       "-Yrangepos",

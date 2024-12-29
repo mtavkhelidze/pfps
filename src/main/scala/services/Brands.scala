@@ -39,7 +39,7 @@ object Brands {
 
 private object BrandSQL {
   val codec: Codec[Brand] =
-    (brandId ~ brandName).imap { case i ~ n =>
+    (brandId *: brandName).imap { case i *: n *: _ =>
       Brand(i, n)
     }(b => (b.uuid, b.name))
 
