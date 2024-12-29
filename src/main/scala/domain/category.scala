@@ -13,7 +13,7 @@ import java.util.UUID
 object category {
 
   @derive(show, encoder, decoder)
-  case class Category(categoryId: CategoryId, name: CategoryName)
+  case class Category(uuid: CategoryId, name: CategoryName)
 
   @derive(show, encoder, decoder, uuid)
   @newtype case class CategoryId(value: UUID)
